@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/create', 'AmoDataController@create')->name('amo.create');
+
+Route::get('/upload', 'AmoDataController@upload')->name('amo.upload');
