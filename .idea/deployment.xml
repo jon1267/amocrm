@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="inv56">
+  <component name="PublishConfigData" serverName="invoice2">
     <serverData>
-      <paths name="indigo-project">
+      <paths name="invoice2">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="inv56">
+      <paths name="tzabz55">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="jasic">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="vel-chat54.loc">
+      <paths name="vis-jasic">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
