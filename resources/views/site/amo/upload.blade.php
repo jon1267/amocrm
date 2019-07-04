@@ -25,11 +25,11 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Qty</th>
-                                <th>Product</th>
-                                <th>Serial #</th>
-                                <th>Description</th>
-                                <th>Subtotal</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Resp User</th>
+                                <th>Created By</th>
+                                <th>Created At</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -67,7 +67,10 @@
                 </div>
                 <div class="row d-print-none mt-2">
                     <div class="col-12 text-right">
-                        <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Load</a>
+                        <!-- <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Load</a> -->
+                        <a href="{{ route('amo.auth') }}" class="btn btn-primary" > Auth</a>
+
+                        <a href="{{ route('amo.upload') }}" class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i> Load</a>
                     </div>
                 </div>
             </section>
