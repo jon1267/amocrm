@@ -62,10 +62,10 @@ class AmoDataController extends Controller
         if ( ($code === 200) || ($code === 204)) {
             return redirect()->route('admin.home')
                 ->with(['status'=>'Contact was added']);
-        } else {
-            return redirect()->route('admin.home')
-                ->with(['error'=>'Error adding contact.']);
         }
+
+        return redirect()->route('admin.home')
+            ->with(['error'=>'Error adding contact.']);
 
     }
 
