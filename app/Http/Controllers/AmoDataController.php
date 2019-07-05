@@ -111,6 +111,15 @@ class AmoDataController extends Controller
         try {
 
             foreach ($contacts as $contact) {
+
+                // если вставляемый контакт уже есть,
+                $insertedContactID = Contact::where('contact_id', $contact['id'])->first();
+
+                // пропускаем дубликат (к-рый уже есть в табл. контактов)
+                if ($insertedContactID) {
+                    continue;
+                }
+
                 Contact::create([
                     'contact_id' => $contact['id'],
                     'name' => $contact['name'],
