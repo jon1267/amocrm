@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Contact;
+use Carbon\Carbon;
 
 class AmoDataController extends Controller
 {
@@ -37,8 +39,6 @@ class AmoDataController extends Controller
             ]
         ];
 
-        dd($contacts);
-
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -55,9 +55,17 @@ class AmoDataController extends Controller
 
         $out = curl_exec($curl);
         $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $code = (int) $code;
 
-        dd(json_decode($out), $code);
+        //dd(json_decode($out), $code);
 
+        if ( ($code === 200) || ($code === 204)) {
+            return redirect()->route('home')
+                ->with(['status'=>'Contact was added']);
+        } else {
+            return redirect()->route('home')
+                ->with(['error'=>'Error adding contact.']);
+        }
 
     }
 
@@ -80,14 +88,43 @@ class AmoDataController extends Controller
 
         $out = curl_exec($curl);
         $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $code = (int) $code;
 
         curl_close($curl);
+
+        if (($code !== 200) && ($code !== 204)) {
+            return redirect()->route('home')
+                ->with(['error' => 'Error reading contacts']);
+        }
 
         $Response = json_decode($out, true);
         $Response = $Response['_embedded']['items'];
 
-        dd($Response, $code);
+        $this->saveContacts($Response);
 
+        return redirect()->route('home');
+
+    }
+
+    public function saveContacts(array $contacts)
+    {
+        try {
+
+            foreach ($contacts as $contact) {
+                Contact::create([
+                    'contact_id' => $contact['id'],
+                    'name' => $contact['name'],
+                    'responsible_user_id' => $contact['responsible_user_id'],
+                    'created_by' => $contact['created_by'],
+                    'amo_created_time' => Carbon::createFromTimestamp($contact['created_at'])
+                ]);
+            }
+
+        } catch (Exception $e) {
+            echo 'Error message: ', $e->getMessage(), "\n";
+        }
+
+        return;
     }
 
     public function apiAuth()

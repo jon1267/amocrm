@@ -1,5 +1,8 @@
 {{--<div class="tab-pane fade" id="user-settings">--}}
     <div class="tile user-settings">
+
+        @include('site.partials.status-block')
+
         <h4 class="line-head">Create Amo Data</h4>
         <form action="{{ route('post.amo.create') }}" method="post">
             @csrf
