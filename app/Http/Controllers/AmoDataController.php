@@ -60,10 +60,10 @@ class AmoDataController extends Controller
         //dd(json_decode($out), $code);
 
         if ( ($code === 200) || ($code === 204)) {
-            return redirect()->route('home')
+            return redirect()->route('admin.home')
                 ->with(['status'=>'Contact was added']);
         } else {
-            return redirect()->route('home')
+            return redirect()->route('admin.home')
                 ->with(['error'=>'Error adding contact.']);
         }
 
@@ -93,7 +93,7 @@ class AmoDataController extends Controller
         curl_close($curl);
 
         if (($code !== 200) && ($code !== 204)) {
-            return redirect()->route('home')
+            return redirect()->route('admin.home')
                 ->with(['error' => 'Error reading contacts']);
         }
 
@@ -102,7 +102,7 @@ class AmoDataController extends Controller
 
         $this->saveContacts($Response);
 
-        return redirect()->route('home');
+        return redirect()->route('admin.home');
 
     }
 
@@ -152,10 +152,19 @@ class AmoDataController extends Controller
 
         $out = curl_exec($curl);
         $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $code = (int) $code;
 
         curl_close($curl);
 
-        dd(json_decode($out), $code);
+        //dd(json_decode($out), $code);
+
+        if ($code === 200) {
+            return redirect()->route('admin.home')
+                ->with(['status' => 'Вы успешно авторизованы']);
+        }
+
+        return redirect()->route('admin.home')
+            ->with(['error' => 'Ошибка авторизации amoCRM']);
 
     }
 

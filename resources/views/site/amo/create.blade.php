@@ -40,6 +40,7 @@
             <div class="row mb-10">
                 <div class="col-md-12">
                      {{--<a href="{{ route('get.amo.create') }}" class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i> Create</a>--}}
+                    <a href="{{ route('amo.auth') }}" class="btn btn-primary" > Auth</a>
                     <button class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i> Create</button>
                 </div>
             </div>

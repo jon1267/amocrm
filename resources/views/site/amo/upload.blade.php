@@ -22,7 +22,7 @@
                             </thead>
                             <tbody>
 
-                            @if(isset($contacts))
+                            @if(isset($contacts) && count($contacts))
                                 @foreach($contacts as $contact)
                                     <tr>
                                         <td>{{ $contact->contact_id }}</td>
@@ -33,7 +33,7 @@
                                     </tr>
                                 @endforeach
                             @else
-                                <tr><td>Sorry. Contacts table are empty now.</td></tr>
+                                <tr><td>Contacts table are empty now.</td></tr>
                             @endif
 
                             </tbody>
@@ -41,7 +41,8 @@
                     </div>
                 </div>
                 <div class="row d-print-none mt-2">
-                    <div class="col-12 text-right">
+                    <!-- <div class="col-12 text-right"> -->
+                    <div class="col-12 text-left">
                         <!-- <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Load</a> -->
                         <a href="{{ route('amo.auth') }}" class="btn btn-primary" > Auth</a>
 
